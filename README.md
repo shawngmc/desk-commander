@@ -36,6 +36,7 @@ Rough idea for a build to control various desktop devices, ideally without a net
     - Add videos via [TKVideoPlayer](https://pypi.org/project/tkvideoplayer/)
     - More widgets via [AwesomeTKinter](https://pypi.org/project/AwesomeTkinter/)
     - [TKfontawesome](https://pypi.org/project/tkfontawesome/) - Fontawesome Icons
+  - Other options: [Kivy](https://kivy.org/), [LibAvg](https://www.libavg.de/site/)
 
 ## External Devices to Control
 - Monitors via DDC/CI on HDMI
