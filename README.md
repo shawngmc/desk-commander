@@ -1,7 +1,15 @@
 # desk-commander
 A build for a RPi-based desktop control touchscreen.
 
-Rough idea for a build to control various desktop devices, ideally without a network connection.
+## Idea
+I want a unified system to control various desktop devices. My criteria are:
+- Touchscreen with status feedback
+- Avoid IP control as much as feasible
+- Be faster than controls on various devices
+  - Monitor input switching is a far reach
+  - My Orei UKM-404 USB matrix switch is 1 button per device, so each device I want to move from output 2 to output 1 is 3 presses, and there is a delay between them.
+- Be able to interact with my Home Assistant
+- Add some cyberdeck styling :)
 
 ## Parts
 - Raspberry Pi 4 - $50
@@ -77,7 +85,7 @@ My monitors (and many others) only have [HDMI 2.0](https://en.wikipedia.org/wiki
 I think USB is slightly simpler here. I'd rather not tie up GPIO pins with something that is easily handled via USB, and I may need a number of RS232 serial connections.
 
 ### Why use that case and that touchscreen?
-I want a DSI touchscreen because I want both HDMI ports to control 2 monitors.
+I want a DSI touchscreen because I want both HDMI ports to control 2 monitors. There are very few DSI touchscreens, and the Pi one - while not the biggest or best - is a de-facto standard, so I can get a pre-made case for it. I also want to minimize fidgetiness - some other touchscreens require non-standard kernel params, etc.
 
 ## Other Refs
 - [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755) 
