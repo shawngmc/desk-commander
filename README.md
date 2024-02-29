@@ -30,7 +30,6 @@ Total BOM is looking to be < $200.
 - Raspbian OS
 - Kiosk UI
   - [Oak](https://github.com/OakLabsInc/oak)? - Kiosk-focused variant of Electron
-  - [Dear PyGUI](https://github.com/hoffstadt/DearPyGui) - Python native GUI library
   - [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter) - TK library built into python
     - Can be made prettier with [CustomTKinter](https://github.com/TomSchimansky/CustomTkinter)?) or [Tkss](https://pypi.org/project/tkstylesheet/) for CSS-like stylesheets
     - [Seems like it can do Fullscreen](https://stackoverflow.com/questions/7966119/display-fullscreen-mode-on-tkinter)
@@ -53,6 +52,9 @@ Total BOM is looking to be < $200.
     - ~~Can use [QT Creator](https://doc.qt.io/qtcreator/qtcreator-transitions-example.html) to make UIs in QML, which I could largely load at runtime~~
     - ~~Can be fullscreen via the [fullscreen prop](https://doc.qt.io/qt-5/qwidget.html#fullScreen-prop)~~
     - ~~Can do video via [QAbstractVideoSurface](https://doc.qt.io/qt-5/qtmultimedia-multimediawidgets-videowidget-example.html)~~
+  - ~~[Dear PyGUI](https://github.com/hoffstadt/DearPyGui) - Python native GUI library~~ - Not up-to-date on Pi
+    - ~~[This](https://github.com/hoffstadt/DearPyGui/issues/2048) shows it's likely DOA until 2.0.... someday?~~
+    - ~~Might be able to build per [this](https://github.com/hoffstadt/DearPyGui/issues/2240), but not worth it.~~
 - Device-specific libraries and debug tools listed with External Device types
 
 ## External Devices to Control
