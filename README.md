@@ -10,13 +10,17 @@ I want a unified system to control various desktop devices. My criteria are:
   - My Orei UKM-404 USB matrix switch is 1 button per device, so each device I want to move from output 2 to output 1 is 3 presses, and there is a delay between them.
 - Be able to interact with my Home Assistant for room control
 - Allow for expansion in the future
+- Document this and make it flexible enough for other people to build
 - Add some cyberdeck styling :)
 
 ## Parts
-- Raspberry Pi 4 - $50
-  - Pi 4 has better DDC/CI support - see [here](https://www.ddcutil.com/raspberry/)
+Total BOM is looking to be < $200.
+- Raspberry Pi 4 - $35 for 1GB, which may be enough
+  - Pi 4 has better DDC/CI support than older models - see [here](https://www.ddcutil.com/raspberry/)
+  - The case I'm using only supports Pi 4 or older.
 - Raspberry Pi 4 Touchscreen - $60+
 - USB-C Power Adapter/Cable - $20
+- HDMI cables x2 - $15
 - [SmartiPi Touch Pro Case w/ large build area](https://www.adafruit.com/product/4951) - $30
 - [USB-TTL Adapters](https://www.adafruit.com/product/954) - $10
   - Others should be fine, but a quality one might save some trouble. :)
@@ -85,7 +89,7 @@ It'd be nice to be able to provide some Home Assistant controls. I don't want to
 Especially with multiple monitors, flexibility is useful. I eventually want to find a good Matrix switch.
 
 ### Why not use a DisplayPort switch?
-They are ery rare outside of KVMs, and they tend to be feature limited.
+They are very rare outside of KVMs, and they tend to be feature limited.
 
 ### Why not just use an external HDMI switch alone?
 My monitors (and many others) only have [HDMI 2.0](https://en.wikipedia.org/wiki/HDMI#Version_comparison), which can only do 2K@144Hz in SDR. For 4K, higher refresh rates, and HDR, you need HDMI 2.1 (with up to 48Gbps bandwidth) or DP 1.4+.
