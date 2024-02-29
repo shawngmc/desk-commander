@@ -28,7 +28,6 @@ Total BOM is looking to be < $200.
 
 ## Software
 - Raspbian OS
-- Device-specific libraries and debug tools listed with External Device types
 - Kiosk UI
   - [Oak](https://github.com/OakLabsInc/oak)? - Kiosk-focused variant of Electron
   - [Python Electron](https://github.com/fyears/electron-python-example) - Electron with Python backend
@@ -44,6 +43,7 @@ Total BOM is looking to be < $200.
     - More widgets via [AwesomeTKinter](https://pypi.org/project/AwesomeTkinter/)
     - [TKfontawesome](https://pypi.org/project/tkfontawesome/) - Fontawesome Icons
   - Other options: [Kivy](https://kivy.org/), [LibAvg](https://www.libavg.de/site/)
+- Device-specific libraries and debug tools listed with External Device types
 
 ## External Devices to Control
 ### Monitors 
@@ -99,6 +99,9 @@ I think USB is slightly simpler here. I'd rather not tie up GPIO pins with somet
 
 ### Why use that case and that touchscreen?
 I want a DSI touchscreen because I want both HDMI ports to control 2 monitors. There are very few DSI touchscreens, and the Pi one - while not the biggest or best - is a de-facto standard, so I can get a pre-made case for it. I also want to minimize fidgetiness - some other touchscreens require non-standard kernel params, etc.
+
+### Why avoid IP/network control?
+It's unnecessary, may add complexity, and brings a host of security issues. Devices with it baked in often have bad implementations; custom implementations might mean a bunch of small edge devices.
 
 ## Other Refs
 - [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755) 
