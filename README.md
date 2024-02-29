@@ -3,12 +3,13 @@ A build for a RPi-based desktop control touchscreen.
 
 ## Idea
 I want a unified system to control various desktop devices. My criteria are:
-- Touchscreen with status feedback
+- Touchscreen with status feedback (which device is selected, etc.)
 - Avoid IP control as much as feasible
 - Be faster than controls on various devices
   - Monitor input switching is a far reach
   - My Orei UKM-404 USB matrix switch is 1 button per device, so each device I want to move from output 2 to output 1 is 3 presses, and there is a delay between them.
-- Be able to interact with my Home Assistant
+- Be able to interact with my Home Assistant for room control
+- Allow for expansion in the future
 - Add some cyberdeck styling :)
 
 ## Parts
@@ -23,13 +24,7 @@ I want a unified system to control various desktop devices. My criteria are:
 
 ## Software
 - Raspbian OS
-- DDC/CI control
-  - [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
-  - [ddc-node](https://github.com/ThalusA/ddc-node) - Node.js binding for a Rust library
-  - [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil
-- Serial control
-  - [PySerial](https://pypi.org/project/pyserial/) - Python serial library
-  - [serialport](https://www.npmjs.com/package/serialport) - Node.js serial library
+- Device-specific libraries and debug tools listed with External Device types
 - Kiosk UI
   - [Oak](https://github.com/OakLabsInc/oak)? - Kiosk-focused variant of Electron
   - [Python Electron](https://github.com/fyears/electron-python-example) - Electron with Python backend
@@ -63,12 +58,23 @@ This is a complex chain, but actually easy to use:
   - It's unclear how monitors with more inputs than covered (such as the [Acer X32 FP](https://www.acer.com/us-en/predator/monitors/x32-fp) with 4 HDMI inputs) or non-covered inputs (USB-C comes to mind, but it's likely treated as a DisplayPort)
 - Linux and Windows both have solid DDC/CI support. [DDCutil](https://www.ddcutil.com/) on Linux is the easiest way to test this, and there are bindings for a bunch of languages.
 
-### USB Switch via RS232 on a USB-TTL adapter
+Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
+Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
+Node.js library (backup plan): [ddc-node](https://github.com/ThalusA/ddc-node) - Node.js binding for a Rust library
+
+### USB Switch/etc. via RS232 on a USB-TTL adapter
 As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use the network connection.
+
+Linux Debug tool: ```cu``` or ```minicom``` 
+Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
+Node.js library (backup plan): [serialport](https://www.npmjs.com/package/serialport) - Node.js serial library
 
 ### Home Assistant
 It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to toggle lights/fans via the screen.
 
+Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
+Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
+Node.js library (backup plan): ???
 
 ## Design Decisions
 
