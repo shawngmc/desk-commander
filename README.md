@@ -31,10 +31,7 @@ Total BOM is looking to be < $200.
 - Kiosk UI
   - [Oak](https://github.com/OakLabsInc/oak)? - Kiosk-focused variant of Electron
   - [Python Electron](https://github.com/fyears/electron-python-example) - Electron with Python backend
-  - ~~[PySimpleGUI](https://www.pysimplegui.com/) - Python wrapper for multiple UI toolkits,~~ free for personal use only?
-  - ~~[QT for Python](https://wiki.qt.io/Qt_for_Python) - Official QT Python wrapper,~~ requires cross-compilation
   - [Dear PyGUI](https://github.com/hoffstadt/DearPyGui) - Python native GUI library
-  - [Pyglet](https://pyglet.org/) - Python native GUI library, has video and fullscreen support
   - [PyQT](https://riverbankcomputing.com/software/pyqt/intro) - Python 3rd-party Qt wrapper
   - [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter) - TK library built into python
     - Can be made prettier with [CustomTKinter](https://github.com/TomSchimansky/CustomTkinter)?) or [Tkss](https://pypi.org/project/tkstylesheet/) for CSS-like stylesheets
@@ -43,6 +40,9 @@ Total BOM is looking to be < $200.
     - More widgets via [AwesomeTKinter](https://pypi.org/project/AwesomeTkinter/)
     - [TKfontawesome](https://pypi.org/project/tkfontawesome/) - Fontawesome Icons
   - Other options: [Kivy](https://kivy.org/), [LibAvg](https://www.libavg.de/site/)
+  - ~~[Pyglet](https://pyglet.org/) - Python native GUI library, has video and fullscreen support~~ - Few native widgets, poor documentation, big API changes in 2.0, none of the 3P widgets are updated ([Glooey](https://github.com/kxgames/glooey/issues/56) isn't a priority for the author, [Kytten](https://github.com/clockworklynx/kytten) is dead and I can't find the mentioned fork, [Pyglet-GUI](https://github.com/jorgecarleitao/pyglet-gui/tree/master) is 9 years old)
+  - ~~[PySimpleGUI](https://www.pysimplegui.com/) - Python wrapper for multiple UI toolkits,~~ - free for personal use only?
+  - ~~[QT for Python](https://wiki.qt.io/Qt_for_Python) - Official QT Python wrapper,~~ - requires cross-compilation
 - Device-specific libraries and debug tools listed with External Device types
 
 ## External Devices to Control
