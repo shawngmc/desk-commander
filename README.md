@@ -33,7 +33,7 @@ Total BOM is looking to be < $200.
   - [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter) - TK library built into python
     - Can be made prettier with [CustomTKinter](https://github.com/TomSchimansky/CustomTkinter)?) or [Tkss](https://pypi.org/project/tkstylesheet/) for CSS-like stylesheets
     - [Seems like it can do Fullscreen](https://stackoverflow.com/questions/7966119/display-fullscreen-mode-on-tkinter)
-    - Add videos via [TKVideoPlayer](https://pypi.org/project/tkvideoplayer/)
+    - Add videos via [TKVideoPlayer](https://pypi.org/project/tkvideoplayer/) (which also [can be used with customtkinter](https://github.com/PaulleDemon/tkVideoPlayer/discussions/23#discussioncomment-4475005))
     - More widgets via [AwesomeTKinter](https://pypi.org/project/AwesomeTkinter/)
     - [TKfontawesome](https://pypi.org/project/tkfontawesome/) - Fontawesome Icons
   - Other options: [Kivy](https://kivy.org/), [LibAvg](https://www.libavg.de/site/)
@@ -117,3 +117,8 @@ It's unnecessary, may add complexity, and brings a host of security issues. Devi
 
 ## Other Refs
 - [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755) 
+
+## Install
+### Development
+1. Clone repo
+1. Run pip install -e . from the root project folder
