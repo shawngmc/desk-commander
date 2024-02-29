@@ -58,23 +58,26 @@ This is a complex chain, but actually easy to use:
   - It's unclear how monitors with more inputs than covered (such as the [Acer X32 FP](https://www.acer.com/us-en/predator/monitors/x32-fp) with 4 HDMI inputs) or non-covered inputs (USB-C comes to mind, but it's likely treated as a DisplayPort)
 - Linux and Windows both have solid DDC/CI support. [DDCutil](https://www.ddcutil.com/) on Linux is the easiest way to test this, and there are bindings for a bunch of languages.
 
-Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
-Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
-Node.js library (backup plan): [ddc-node](https://github.com/ThalusA/ddc-node) - Node.js binding for a Rust library
+#### Tooling
+- Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
+- Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
+- Node.js library (backup plan): [ddc-node](https://github.com/ThalusA/ddc-node) - Node.js binding for a Rust library
 
 ### USB Switch/etc. via RS232 on a USB-TTL adapter
 As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use the network connection.
 
-Linux Debug tool: ```cu``` or ```minicom``` 
-Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
-Node.js library (backup plan): [serialport](https://www.npmjs.com/package/serialport) - Node.js serial library
+#### Tooling
+- Linux Debug tool: ```cu``` or ```minicom``` 
+- Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
+- Node.js library (backup plan): [serialport](https://www.npmjs.com/package/serialport) - Node.js serial library
 
 ### Home Assistant
 It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to toggle lights/fans via the screen.
 
-Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
-Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
-Node.js library (backup plan): ???
+#### Tooling
+- Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
+- Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
+- Node.js library (backup plan): ???
 
 ## Design Decisions
 
