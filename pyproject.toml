@@ -1,5 +1,5 @@
 [project]
-name = "desk-commander"
+name = "deskcommander"
 version = "0.0.1"
 authors = [
   { name="Shawn McNaughton", email="shawngmc@gmail.com" },
@@ -9,7 +9,9 @@ readme = "README.md"
 license = { file="LICENSE" }
 requires-python = ">=3.9"
 dependencies = [
-  'customtkinter >= 5.2.2'
+  'customtkinter >= 5.2.2',
+  'HomeAssistant-API >= 4.2.1',
+  'hubspace-ng >= 0.0.4'
 ]
 
 [project.urls]
