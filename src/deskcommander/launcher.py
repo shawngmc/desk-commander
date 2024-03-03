@@ -48,16 +48,16 @@ class Window():
             await light_toggle.toggle()
         async def check_light():
             return await light_toggle.is_on()
-        button = ToggleButton(master=self.root, width=80, height=80, text="Toggle Light", loop=self.loop, toggle_command=toggle_light, check_command=check_light)
+        button = ToggleButton(master=self.root, width=120, height=80, text="Toggle Light", loop=self.loop, toggle_command=toggle_light, check_command=check_light)
         button.place(relx=0.9, rely=0.2, anchor=customtkinter.CENTER)
 
-        # # Fan Button
+        # Fan Button
         fan_toggle = ToggleDevice(self.config['hubspace']['fan'], self.config['hubspace']['username'], self.config['hubspace']['password'])
         async def toggle_fan():
             await fan_toggle.toggle()
         async def check_fan():
             return await fan_toggle.is_on()
-        button = ToggleButton(master=self.root, width=80, height=80, text="Toggle Fan", loop=self.loop, toggle_command=toggle_fan, check_command=check_fan)
+        button = ToggleButton(master=self.root, width=120, height=80, text="Toggle Fan", loop=self.loop, toggle_command=toggle_fan, check_command=check_fan)
         button.place(relx=0.9, rely=0.4, anchor=customtkinter.CENTER)
 
     async def show(self):
@@ -79,12 +79,13 @@ class ToggleButton(customtkinter.CTkButton):
     ):
         self.loop = loop
         async def toggle():
+            self.configure(state="disabled")
             await toggle_command()
             await asyncio.sleep(.1)
             await check()
+            self.configure(state="normal")
         async def check():
             new_state = await check_command()
-            print(new_state)
             self.updateState(new_state)
         super(ToggleButton, self).__init__(command=lambda: self.loop.create_task(toggle()), *args, **kwargs)
         if initialState is None:
@@ -96,9 +97,9 @@ class ToggleButton(customtkinter.CTkButton):
         # TKInter color chart: https://cs111.wellesley.edu/archive/cs111_fall14/public_html/labs/lab12/tkintercolor.html
         print(f"Updatestate {state}")
         if state:
-            self.configure(fg_color='medium spring green', hover_color='forest green')
+            self.configure(fg_color='green2', hover_color='green3', text_color='black')
         else:
-            self.configure(fg_color='red2', hover_color='red4')
+            self.configure(fg_color='red2', hover_color='red3', text_color='black')
 
 def launch():
     asyncio.run(App().exec())
