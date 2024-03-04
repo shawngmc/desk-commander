@@ -2,9 +2,9 @@ import asyncio
 import json
 import os
 import logging
-import sys
+import signal
 
-from flask import Flask
+from flask import Flask, request
 
 from deskcommander.connectors.hubspace import ToggleDevice 
 
@@ -20,6 +20,13 @@ if not config:
     raise ValueError("No config provided; exiting.")
 
 app = Flask(__name__)
+
+@app.route("/shutdown")
+async def shutdown():
+    print('Shutting down gracefully...')
+    os.kill(os.getpid(), signal.SIGINT)
+    return "OK, Shutting down...", 200
+
 
 light_toggle = ToggleDevice(config['hubspace']['light'], config['hubspace']['username'], config['hubspace']['password'])
 @app.route("/light/toggle")
