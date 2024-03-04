@@ -9,10 +9,9 @@ readme = "README.md"
 license = { file="LICENSE" }
 requires-python = ">=3.9"
 dependencies = [
-  'customtkinter >= 5.2.2',
+  'Flask[async] >= 3.0.2',
   'HomeAssistant-API >= 4.2.1',
   'hubspace-ng >= 0.0.4',
-  'kivy >= 2.3.0'
 ]
 
 [project.urls]

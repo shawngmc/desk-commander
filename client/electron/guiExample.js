@@ -1,6 +1,48 @@
 const { exec } = require("child_process");
 const nodeConsole = require("console");
 const { ipcRenderer } = require("electron");
+var net = require('net');
+
+var conn_client = null;
+
+var update_ui_state = function() {
+  var connected = (conn_client != null);
+  document.getElementById("start_code").disabled = connected;
+  document.getElementById("send_code").disabled = !connected;
+  document.getElementById("stop_code").disabled = !connected;
+}
+setTimeout(update_ui_state, 200);
+
+var client_connected = function(client) {
+  console.log(`client connected`);
+  conn_client = client;
+  update_ui_state();
+}
+
+
+var server = net.createServer(client => {
+  const chunks = [];
+  client_connected(client);
+  client.setEncoding('utf8');
+
+  client.on('end', () => {
+    console.log('client disconnected');
+    conn_client = null;
+    update_ui_state();
+  });
+
+
+  client.on('data', chunk => {
+    console.log(`Got data: ${chunk}`);
+    chunks.push(chunk)
+
+    if (chunk.match(/\r\n$/)) {
+      const {ping} = JSON.parse(chunks.join(''));
+      client.write(JSON.stringify({pong: ping}));
+    }
+  });
+});
+
 
 const terminalConsole = new nodeConsole.Console(process.stdout, process.stderr);
 let child;
@@ -20,32 +62,31 @@ const printBoth = (str) => {
 };
 
 const sendToProgram = (str) => {
-  child.stdin.write(str);
-  child.stdout.on("data", (data) => {
-    printBoth(
-      `Following data has been piped from python program: ${data.toString(
-        "utf8"
-      )}`
-    );
-  });
+  conn_client.write(str);
+  // child.stdin.write(str);
+  // child.stdout.on("data", (data) => {
+  //   printBoth(
+  //     `Following data has been piped from python program: ${data.toString(
+  //       "utf8"
+  //     )}`
+  //   );
+  // });
 };
 
 const startCodeFunction = () => {
   printBoth("Initiating program");
 
-  child = exec("python -i ./python/pythonExample.py", (error) => {
+  child = exec("bash ../server_launch.sh", (error) => {
     if (error) {
       printBoth(`exec error: ${error}`);
     }
   });
+};
 
-  child.stdout.on("data", (data) => {
-    printBoth(
-      `Following data has been piped from python program: ${data.toString(
-        "utf8"
-      )}`
-    );
-  });
+const toggleLightFunction = () => {
+  printBoth("Toggling light");
+
+  fetch("http://localhost:5000/light/toggle")
 };
 
 const sendCodeFunction = () => {
@@ -74,6 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("start_code")
     .addEventListener("click", startCodeFunction);
+  document
+    .getElementById("toggle_light")
+    .addEventListener("click", toggleLightFunction);
   document
     .getElementById("send_code")
     .addEventListener("click", sendCodeFunction);

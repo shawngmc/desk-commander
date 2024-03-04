@@ -15,7 +15,7 @@ function printBoth(str) {
 // Create the browser window.
 function createWindow() {
   const mainWindow = new BrowserWindow({
-    width: 990,
+    width: 1024,
     height: 600,
     resizable: true,
     webPreferences: {

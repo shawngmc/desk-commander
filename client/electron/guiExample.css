@@ -56,9 +56,18 @@ button {
     transition: background-color 0.3s;
 }
 
+button:disabled {
+    background-color: #888;
+}
+
 button:hover {
     background-color: #0754b8;
 }
+
+button:disabled:hover {
+    background-color: #888;
+}
+
 
 a {
     color: #4285F4;
