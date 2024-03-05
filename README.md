@@ -14,13 +14,17 @@ I want a unified system to control various desktop devices. My criteria are:
 - Add some cyberdeck styling :)
 
 ## Parts
-Total BOM is looking to be < $200.
+Total BOM is looking to be < $250, currently around $202.
 - Raspberry Pi 4 - $35 for 1GB, which may be enough
   - Pi 4 has better DDC/CI support than older models - see [here](https://www.ddcutil.com/raspberry/)
   - The case I'm using only supports Pi 4 or older.
 - Raspberry Pi 4 Touchscreen - $60+
+- MicroSD Card (32GB seems fine) - $7
+- 2x [cable-style MicroHDMI Male to HDMI Female Adapters](https://www.amazon.com/dp/B0CQPFRNCX?psc=1&ref=ppx_yo2ov_dt_b_product_details) - $7
+- 2x [Short HDMI extensions](https://www.amazon.com/dp/B079ZPK4V2?psc=1&ref=ppx_yo2ov_dt_b_product_details) - $7
+- Short ethernet cable and coupler - $8
+- [Squid-like USB hub](https://www.amazon.com/USB-Splitter-Charger-Extension-Adapter/dp/B07VLJDQ15/) - $10
 - USB-C Power Adapter/Cable - $20
-- HDMI cables x2 - $15
 - [SmartiPi Touch Pro Case w/ large build area](https://www.adafruit.com/product/4951) - $30
 - [USB-TTL Adapters](https://www.adafruit.com/product/954) - $10
   - Others should be fine, but a quality one might save some trouble. :)
@@ -103,7 +107,7 @@ It's unnecessary, may add complexity, and brings a host of security issues. Devi
 - [LibAvg](https://www.libavg.de/site/) - **Generally requires a source build**
 - [Pyglet](https://pyglet.org/) - Python native GUI library, has video and fullscreen support **Few native widgets, poor documentation, big API changes in 2.0, none of the 3P widgets are updated ([Glooey](https://github.com/kxgames/glooey/issues/56) isn't a priority for the author, [Kytten](https://github.com/clockworklynx/kytten) is dead and I can't find the mentioned fork, [Pyglet-GUI](https://github.com/jorgecarleitao/pyglet-gui/tree/master) is 9 years old)**
 - [PySimpleGUI](https://www.pysimplegui.com/) - Python wrapper for multiple UI toolkits - free for personal use only?
-- [NiceGUI](https://nicegui.io/) - **discovered late, not very themable, and native mode needs.... Qt or GTK!**
+- [NiceGUI](https://nicegui.io/) - **discovered late, not very themable, and native mode needs [https://github.com/r0x0r/pywebview](PyWebView), which needs... Qt or GTK!**
 - QT on Python - **not natively available for Pi and too much work to implement!**
     - Multiple Distros
       - [PyQT](https://riverbankcomputing.com/software/pyqt/intro) - Python 3rd-party Qt wrapper, GPL v3, no wheel for QT on Pi
