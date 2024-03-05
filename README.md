@@ -134,7 +134,8 @@ It's unnecessary, may add complexity, and brings a host of security issues. Devi
   - [Cyberpunk 2077 Theme CSS](https://codepen.io/gwannon/pen/LYjvOLK) - **button is less refined, but I could use some of the other things**
 
 ## Other Refs
-- [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755) 
+- [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755)
+- [CyberDeck using this case](https://www.reddit.com/r/cyberDeck/comments/vjpldx/here_is_my_first_cyberdeck_raspberry_pi_4_using/) - I found the case before I found this, but I might snag another :)
 
 ## Install
 ### Development
