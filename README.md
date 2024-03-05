@@ -57,7 +57,6 @@ This is a complex chain, but actually easy to use:
 #### Tooling
 - Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
 - Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
-- Node.js library (backup plan): [ddc-node](https://github.com/ThalusA/ddc-node) - Node.js binding for a Rust library
 
 ### USB Switch/etc. via RS232 on a USB-TTL adapter
 As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use the network connection.
@@ -65,7 +64,6 @@ As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use t
 #### Tooling
 - Linux Debug tool: ```cu``` or ```minicom``` 
 - Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
-- Node.js library (backup plan): [serialport](https://www.npmjs.com/package/serialport) - Node.js serial library
 
 ### Home Assistant
 It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to toggle lights/fans via the screen.
@@ -73,7 +71,12 @@ It'd be nice to be able to provide some Home Assistant controls. I don't want to
 #### Tooling
 - Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
 - Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
-- Node.js library (backup plan): ???
+
+### Hubspace
+Hubspace is Home Depot's Afero-based smart home product line, and I have a ceiling fan with it. I could do this through HomeAssistant, but that integration is a little messy. I know a guy who wrote a clean Python backend, and may eventually make a better HA integration, but in the mean time, why not use the Python backend directly? Nosce te ipsum.
+
+#### Tooling
+- Python library and debug tool: [Hubspace-ng](https://github.com/shawngmc/hubspace-ng)
 
 ## Design Decisions
 
@@ -132,6 +135,12 @@ It's unnecessary, may add complexity, and brings a host of security issues. Devi
 - Codepens
   - [Pure CSS Cyberpunk Buttons](https://codepen.io/jh3y/details/PoGbxLp) - **would need major animation tweaks and stuff, but might be a starting point**
   - [Cyberpunk 2077 Theme CSS](https://codepen.io/gwannon/pen/LYjvOLK) - **button is less refined, but I could use some of the other things**
+  - [Slack / Discord Cyberpunk 2077 redesign w/ Preact](https://codepen.io/hussard/pen/ExgbXMP) - **Possibly a bit too Cyberpunk the game, but I may steal a few things**
+ 
+### Why not just use node.js the whole way through?
+- I already had my Hubspace-ng library and some prototype code.
+- I wasn't originally doing an Electron GUI.
+- JS is just a bit messier than I want for the backend.
 
 ## Other Refs
 - [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755)
