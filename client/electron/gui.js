@@ -1,16 +1,7 @@
 const { exec } = require("child_process");
-const { ipcRenderer } = require("electron");
 
 let child;
 
-ipcRenderer.send("run-command", "ls");
-ipcRenderer.on("run-command-result", (event, result) => {
-  if (result.error) {
-    console.error("Error:", result.error);
-  } else {
-    console.log("Output:", result.output);
-  }
-});
 
 const startCodeFunction = () => {
   console.log("Initiating program");
@@ -33,15 +24,6 @@ const stopCodeFunction = () => {
   fetch("http://localhost:5000/shutdown");
 };
 
-// const openFileFunctionSync = () => {
-//   printBoth("From guiExample.js sending a request to main.js via ipc");
-//   ipcRenderer.send("open_json_file_sync");
-// };
-
-// const openFileFunctionAsync = () => {
-//   printBoth("From guiExample.js sending a request to main.js via ipc");
-//   ipcRenderer.send("open_json_file_async");
-// };
 
 document.addEventListener("DOMContentLoaded", () => {
   document
@@ -53,10 +35,4 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("stop_code")
     .addEventListener("click", stopCodeFunction);
-  // document
-  //   .getElementById("open_file_sync")
-  //   .addEventListener("click", openFileFunctionSync);
-  // document
-  //   .getElementById("open_file_async")
-  //   .addEventListener("click", openFileFunctionAsync);
 });

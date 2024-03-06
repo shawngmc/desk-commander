@@ -14,14 +14,14 @@ function createWindow() {
     height: 600,
     resizable: true,
     webPreferences: {
-      preload: path.join(__dirname, "guiExample.js"),
+      preload: path.join(__dirname, "gui.js"),
       contextIsolation: true,
       nodeIntegration: true,
     },
   });
 
   // Load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, "guiExample.html"));
+  mainWindow.loadFile(path.join(__dirname, "gui.html"));
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
@@ -65,7 +65,7 @@ ipcMain.on("execute", (command) => {
 //     if (err) {
 //       return console.error(err);
 //     }
-//     printBoth("Called through ipc.send from guiExample.js");
+//     printBoth("Called through ipc.send from gui.js");
 //     printBoth("Asynchronous read: " + data.toString());
 //   });
 // });
@@ -77,7 +77,7 @@ ipcMain.on("execute", (command) => {
 //   const data = fs.readFileSync(fileName);
 //   const json = JSON.parse(data);
 
-//   printBoth("Called through ipc.send from guiExample.js");
+//   printBoth("Called through ipc.send from gui.js");
 //   printBoth(
 //     `Data from config.json:\nA_MODE = ${json.A_MODE}\nB_MODE = ${json.B_MODE}\nC_MODE = ${json.C_MODE}\nD_MODE = ${json.D_MODE}`
 //   );
