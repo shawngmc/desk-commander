@@ -14,13 +14,17 @@ I want a unified system to control various desktop devices. My criteria are:
 - Add some cyberdeck styling :)
 
 ## Parts
-Total BOM is looking to be < $200.
+Total BOM is looking to be < $250, currently around $212.
 - Raspberry Pi 4 - $35 for 1GB, which may be enough
   - Pi 4 has better DDC/CI support than older models - see [here](https://www.ddcutil.com/raspberry/)
   - The case I'm using only supports Pi 4 or older.
 - Raspberry Pi 4 Touchscreen - $60+
+- MicroSD Card (32GB seems fine) - $7
+- 2x [cable-style MicroHDMI Male to HDMI Female Adapters](https://www.amazon.com/dp/B0CQPFRNCX?psc=1&ref=ppx_yo2ov_dt_b_product_details) - $7
+- 2x [Short HDMI extensions](https://www.amazon.com/dp/B079ZPK4V2?psc=1&ref=ppx_yo2ov_dt_b_product_details) - $7
+- Short ethernet cable and coupler - $8
+- [USB Hub/speaker/mic](https://www.amazon.com/USB-Hub-Portable-Computer-Headphone-Speakers/dp/B09FZFBPBC/) - $20
 - USB-C Power Adapter/Cable - $20
-- HDMI cables x2 - $15
 - [SmartiPi Touch Pro Case w/ large build area](https://www.adafruit.com/product/4951) - $30
 - [USB-TTL Adapters](https://www.adafruit.com/product/954) - $10
   - Others should be fine, but a quality one might save some trouble. :)
@@ -28,33 +32,9 @@ Total BOM is looking to be < $200.
 
 ## Software
 - Raspbian OS
-- Kiosk UI
-  - [Oak](https://github.com/OakLabsInc/oak)? - Kiosk-focused variant of Electron
-  - [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter) - TK library built into python
-    - Can be made prettier with [CustomTKinter](https://github.com/TomSchimansky/CustomTkinter)?) or [Tkss](https://pypi.org/project/tkstylesheet/) for CSS-like stylesheets
-    - [Seems like it can do Fullscreen](https://stackoverflow.com/questions/7966119/display-fullscreen-mode-on-tkinter)
-    - Add videos via [TKVideoPlayer](https://pypi.org/project/tkvideoplayer/) (which also [can be used with customtkinter](https://github.com/PaulleDemon/tkVideoPlayer/discussions/23#discussioncomment-4475005))
-    - More widgets via [AwesomeTKinter](https://pypi.org/project/AwesomeTkinter/)
-    - [TKfontawesome](https://pypi.org/project/tkfontawesome/) - Fontawesome Icons
-  - Other options: [Kivy](https://kivy.org/), [LibAvg](https://www.libavg.de/site/)
-  - ~~[Pyglet](https://pyglet.org/) - Python native GUI library, has video and fullscreen support~~ - Few native widgets, poor documentation, big API changes in 2.0, none of the 3P widgets are updated ([Glooey](https://github.com/kxgames/glooey/issues/56) isn't a priority for the author, [Kytten](https://github.com/clockworklynx/kytten) is dead and I can't find the mentioned fork, [Pyglet-GUI](https://github.com/jorgecarleitao/pyglet-gui/tree/master) is 9 years old)
-  - ~~[PySimpleGUI](https://www.pysimplegui.com/) - Python wrapper for multiple UI toolkits,~~ - free for personal use only?
-  - ~~[Python Electron](https://github.com/fyears/electron-python-example) - Electron with Python backend~~ - just a proof of concept?
-  - ~~QT on Python~~ - not natively available for Pi and too much work to implement!
-    - ~~Multiple Distros~~
-      - ~~[PyQT](https://riverbankcomputing.com/software/pyqt/intro) - Python 3rd-party Qt wrapper, GPL v3~~
-      - ~~[QT for Python](https://wiki.qt.io/Qt_for_Python) - Official QT Python wrapper, LGPL~~
-      - ~~[APIs are nearly identical](https://www.pythonguis.com/faq/pyqt5-vs-pyside2/)~~
-    - ~~Building QT~~
-      - ~~[This is some serious work.](https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi)~~
-      - ~~Even the [docker solution looks painful](https://github.com/PhysicsX/QTonRaspberryPi)~~
-      - ~~This [doc](https://www.tal.org/tutorials/building-qt-62-raspberry-pi-raspberry-pi-os) points out it needs the headers for the video card driver to do hardware acceleration?~~
-    - ~~Can use [QT Creator](https://doc.qt.io/qtcreator/qtcreator-transitions-example.html) to make UIs in QML, which I could largely load at runtime~~
-    - ~~Can be fullscreen via the [fullscreen prop](https://doc.qt.io/qt-5/qwidget.html#fullScreen-prop)~~
-    - ~~Can do video via [QAbstractVideoSurface](https://doc.qt.io/qt-5/qtmultimedia-multimediawidgets-videowidget-example.html)~~
-  - ~~[Dear PyGUI](https://github.com/hoffstadt/DearPyGui) - Python native GUI library~~ - Not up-to-date on Pi
-    - ~~[This](https://github.com/hoffstadt/DearPyGui/issues/2048) shows it's likely DOA until 2.0.... someday?~~
-    - ~~Might be able to build per [this](https://github.com/hoffstadt/DearPyGui/issues/2240), but not worth it.~~
+- Electron
+  - Uses Python backend launch model from [Python Electron](https://github.com/fyears/electron-python-example) proof of concept, but using an HTTP backend instead
+- Flask
 - Device-specific libraries and debug tools listed with External Device types
 
 ## External Devices to Control
@@ -77,7 +57,6 @@ This is a complex chain, but actually easy to use:
 #### Tooling
 - Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
 - Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
-- Node.js library (backup plan): [ddc-node](https://github.com/ThalusA/ddc-node) - Node.js binding for a Rust library
 
 ### USB Switch/etc. via RS232 on a USB-TTL adapter
 As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use the network connection.
@@ -85,7 +64,6 @@ As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use t
 #### Tooling
 - Linux Debug tool: ```cu``` or ```minicom``` 
 - Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
-- Node.js library (backup plan): [serialport](https://www.npmjs.com/package/serialport) - Node.js serial library
 
 ### Home Assistant
 It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to toggle lights/fans via the screen.
@@ -93,7 +71,12 @@ It'd be nice to be able to provide some Home Assistant controls. I don't want to
 #### Tooling
 - Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
 - Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
-- Node.js library (backup plan): ???
+
+### Hubspace
+Hubspace is Home Depot's Afero-based smart home product line, and I have a ceiling fan with it. I could do this through HomeAssistant, but that integration is a little messy. I know a guy who wrote a clean Python backend, and may eventually make a better HA integration, but in the mean time, why not use the Python backend directly? Nosce te ipsum.
+
+#### Tooling
+- Python library and debug tool: [Hubspace-ng](https://github.com/shawngmc/hubspace-ng)
 
 ## Design Decisions
 
@@ -115,8 +98,53 @@ I want a DSI touchscreen because I want both HDMI ports to control 2 monitors. T
 ### Why avoid IP/network control?
 It's unnecessary, may add complexity, and brings a host of security issues. Devices with it baked in often have bad implementations; custom implementations might mean a bunch of small edge devices.
 
+### Why not use X for the UI renderer?
+- [Oak](https://github.com/OakLabsInc/oak)? - Kiosk-focused variant of Electron **Not updated in 3 years**
+- [Tkinter](https://docs.python.org/3/library/tkinter.html#module-tkinter) - TK library built into python - **Generally ugly, slow, not great with async**
+  - Can be made prettier with [CustomTKinter](https://github.com/TomSchimansky/CustomTkinter)?) or [Tkss](https://pypi.org/project/tkstylesheet/) for CSS-like stylesheets
+  - [Seems like it can do Fullscreen](https://stackoverflow.com/questions/7966119/display-fullscreen-mode-on-tkinter)
+  - Add videos via [TKVideoPlayer](https://pypi.org/project/tkvideoplayer/) (which also [can be used with customtkinter](https://github.com/PaulleDemon/tkVideoPlayer/discussions/23#discussioncomment-4475005))
+  - More widgets via [AwesomeTKinter](https://pypi.org/project/AwesomeTkinter/)
+  - [TKfontawesome](https://pypi.org/project/tkfontawesome/) - Fontawesome Icons
+- [Kivy](https://kivy.org/) - **was having trouble setting up in a conda env**
+- [LibAvg](https://www.libavg.de/site/) - **Generally requires a source build**
+- [Pyglet](https://pyglet.org/) - Python native GUI library, has video and fullscreen support **Few native widgets, poor documentation, big API changes in 2.0, none of the 3P widgets are updated ([Glooey](https://github.com/kxgames/glooey/issues/56) isn't a priority for the author, [Kytten](https://github.com/clockworklynx/kytten) is dead and I can't find the mentioned fork, [Pyglet-GUI](https://github.com/jorgecarleitao/pyglet-gui/tree/master) is 9 years old)**
+- [PySimpleGUI](https://www.pysimplegui.com/) - Python wrapper for multiple UI toolkits - free for personal use only?
+- [NiceGUI](https://nicegui.io/) - **discovered late, not very themable, and native mode needs [https://github.com/r0x0r/pywebview](PyWebView), which needs... Qt or GTK!**
+- QT on Python - **not natively available for Pi and too much work to implement!**
+    - Multiple Distros
+      - [PyQT](https://riverbankcomputing.com/software/pyqt/intro) - Python 3rd-party Qt wrapper, GPL v3, no wheel for QT on Pi
+      - [QT for Python](https://wiki.qt.io/Qt_for_Python) - Official QT Python wrapper, LGPL, no wheel for QT on Pi
+      - [APIs are nearly identical](https://www.pythonguis.com/faq/pyqt5-vs-pyside2/)
+    - Building QT
+      - [This is some serious work.](https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi)
+      - Even the [docker solution looks painful](https://github.com/PhysicsX/QTonRaspberryPi)
+      - This [doc](https://www.tal.org/tutorials/building-qt-62-raspberry-pi-raspberry-pi-os) points out it needs the headers for the video card driver to do hardware acceleration?
+    - Can use [QT Creator](https://doc.qt.io/qtcreator/qtcreator-transitions-example.html) to make UIs in QML, which I could largely load at runtime
+    - Can be fullscreen via the [fullscreen prop](https://doc.qt.io/qt-5/qwidget.html#fullScreen-prop)
+    - Can do video via [QAbstractVideoSurface](https://doc.qt.io/qt-5/qtmultimedia-multimediawidgets-videowidget-example.html)
+  - [Dear PyGUI](https://github.com/hoffstadt/DearPyGui) - Python native GUI library - **Not up-to-date on Pi**
+    - [This](https://github.com/hoffstadt/DearPyGui/issues/2048) shows it's likely DOA until 2.0.... someday?
+    - Might be able to build per [this](https://github.com/hoffstadt/DearPyGui/issues/2240), but not worth it.
+   
+### Why not use X for the Web UI widgets?
+- [Arwes](https://arwes.dev) - **Awesome looking, but not wholly ready for prime time - might use for background and frame still?**
+  - Lack of documentation
+  - Many elements that should be part of the framework (like Button) are instead part of the demo site app and would need re-implemented
+- [Augmented UI](https://augmented-ui.com/) - **Only covers frame-like elements, not really the aesthetic I want**
+- Codepens
+  - [Pure CSS Cyberpunk Buttons](https://codepen.io/jh3y/details/PoGbxLp) - **would need major animation tweaks and stuff, but might be a starting point**
+  - [Cyberpunk 2077 Theme CSS](https://codepen.io/gwannon/pen/LYjvOLK) - **button is less refined, but I could use some of the other things**
+  - [Slack / Discord Cyberpunk 2077 redesign w/ Preact](https://codepen.io/hussard/pen/ExgbXMP) - **Possibly a bit too Cyberpunk the game, but I may steal a few things**
+ 
+### Why not just use node.js the whole way through?
+- I already had my Hubspace-ng library and some prototype code.
+- I wasn't originally doing an Electron GUI.
+- JS is just a bit messier than I want for the backend.
+
 ## Other Refs
-- [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755) 
+- [Someone else has done something similar?](https://news.ycombinator.com/item?id=31828755)
+- [CyberDeck using this case](https://www.reddit.com/r/cyberDeck/comments/vjpldx/here_is_my_first_cyberdeck_raspberry_pi_4_using/) - I found the case before I found this, but I might snag another :)
 
 ## Install
 ### Development
