@@ -27,7 +27,7 @@ function App() {
                   <Clock />: d869db7fe62fb07c25a0403ecaea55031744b5fb
                 </TextOverline>
                 <TextHeading4 className="segment-topbar__title">
-                  <ChannelLink name="Shawn" />
+                  #Shawn
                 </TextHeading4>
               </div>
               <div className="segment-topbar__aside">
@@ -44,43 +44,98 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="channel-feed__body"></div>
+            <div className="channel-feed__body">
+              <div className="container">
+                <div className="item"></div>
+                <div className="item">/dev/kb</div>
+                <div className="item">/dev/ptr</div>
+                <div className="item">/dev/claw</div>
+                <div className="item">/sys/ursamajor</div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">/sys/wingzero</div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">/sys/accent</div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">/sys/flex</div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="app-b">
           <Pad>
             <TextHeading3 $as="h4">CLIMATE</TextHeading3>
-            <Toggle size="xl" type="submit" on enabled>
+            <Toggle size="xl" type="submit" on enabled deviceName={'light'}>
               Light
             </Toggle>
-            <Toggle size="xl" type="submit">
+            <Toggle size="xl" type="submit" on enabled deviceName={'fan'}>
               Fan
             </Toggle>
           </Pad>
-        </div>
+        </div>  
       </div>
     </div>
   );
 }
 
-
-function ChannelLink({ icon, name, unread }) {
-  return (
-    <span
-      className={`channel-link ${
-        unread > 0 ? "conversation-link--unread" : ""
-      }`}
-    >
-      <span className="channel-link__icon">#</span>
-      <span className="channel-link__element">{name}</span>
-
-      {unread > 0 && (
-        <span className="channel-link__element">
-          <Badge>{unread}</Badge>
-        </span>
-      )}
-    </span>
-  );
+async function backend(endpoint) {
+  await fetch(`http://localhost:5000/${endpoint}`);
 }
 
 function Badge({ children }) {
@@ -124,12 +179,22 @@ class Toggle extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  async handleClick() {
     if (this.props.enabled) {
-      console.log("click");
-      this.setState((prevState) => ({
-        isToggleOn: !prevState.isToggleOn
-      }));
+      if (this.props.deviceName) {
+        try {
+          await fetch(`http://localhost:5000/${this.props.deviceName}/toggle`);
+          this.setState((prevState) => ({
+            isToggleOn: !prevState.isToggleOn
+          }));
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        this.setState((prevState) => ({
+          isToggleOn: !prevState.isToggleOn
+        }));
+      }
     }
   }
 
@@ -143,9 +208,8 @@ class Toggle extends Component {
     return (
       <button
         onClick={this.handleClick}
-        className={`button-toggle button-toggle--${displayType} ${
-          props.size ? `button-toggle--size-${props.size}` : ""
-        }`}
+        className={`button-toggle button-toggle--${displayType} ${props.size ? `button-toggle--size-${props.size}` : ""
+          }`}
         type="button"
       >
         <span className="button__content">{props.children}</span>
@@ -162,9 +226,8 @@ function Button({
 }) {
   return (
     <button
-      className={`button ${variant ? `button--${variant}` : ""} ${
-        size ? `button--size-${size}` : ""
-      }`}
+      className={`button ${variant ? `button--${variant}` : ""} ${size ? `button--size-${size}` : ""
+        }`}
       type={type}
     >
       <span className="button__content">{children}</span>
@@ -184,13 +247,12 @@ function NavItem({ navItem }) {
   return (
     <li className="nav__item">
       <a
-        className={`nav__link ${
-          navItem.isActive
-            ? "nav__link--active"
-            : navItem.disabled
+        className={`nav__link ${navItem.isActive
+          ? "nav__link--active"
+          : navItem.disabled
             ? "nav__link--disabled"
             : ""
-        }`}
+          }`}
         href="#"
       >
         <span className="nav__link__element">{navItem.text}</span>
@@ -247,18 +309,6 @@ const IconFeedSettings = MakeIcon(
 
 const IconMenuMore = MakeIcon(
   <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z" />
-);
-
-const IconFeedAdd = MakeIcon(
-  <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
-);
-
-const IconSearchSubmit = MakeIcon(
-  <path d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z" />
-);
-
-const IconShop = MakeIcon(
-  <path d="M16.53 7l-.564 2h-15.127l-.839-2h16.53zm-14.013 6h12.319l.564-2h-13.722l.839 2zm5.983 5c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm11.305-15l-3.432 12h-13.017l.839 2h13.659l3.474-12h1.929l.743-2h-4.195zm-6.305 15c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z" />
 );
 
 const FIXTURES = {
