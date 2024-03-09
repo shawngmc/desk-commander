@@ -3,7 +3,7 @@ from aiohttp import ClientSession
 from hubspaceng.api import login
 
 
-class ToggleDevice:
+class HubspaceToggleDevice:
     device_id: str
     username: str
     password: str
