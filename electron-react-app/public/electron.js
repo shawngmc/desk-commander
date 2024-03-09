@@ -1,11 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow } = require("electron");
-const exec = require("child_process").exec;
 const path = require("path");
 const isDev = import('electron-is-dev');
 
 let mainWindow;
-let child;
 
 
 // Create the browser window.
@@ -13,13 +11,17 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1024,
     height: 600,
-    resizable: true,
+    useContentSize: true,
+    // fullscreen: true, 
+    // frame: false,
+    resizable: false,
     webPreferences: {
-      preload: path.join(__dirname, "gui.js"),
+      preload: path.join(__dirname, "App.js"),
       contextIsolation: true,
       nodeIntegration: true,
     },
   });
+
 
   const startURL = isDev
     ? 'http://localhost:3000'
@@ -28,6 +30,10 @@ function createWindow() {
   mainWindow.loadURL(startURL);
 
   mainWindow.on('closed', () => (mainWindow = null));
+
+
+  // Open the DevTools.
+  mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished

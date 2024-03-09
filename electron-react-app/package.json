@@ -1,6 +1,8 @@
 {
-  "name": "electron-react-app",
+  "name": "desk-commander",
   "version": "0.1.0",
+  "author": "mcnausg",
+  "description": "",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -17,9 +19,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "launch": "./dist/linux-unpacked/electron-react-app"
   },
-  "main": "electron.js",
+  "main": "./public/electron.js",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -39,6 +42,9 @@
     ]
   },
   "devDependencies": {
+    "@arwes/react": "^1.0.0-alpha.23",
+    "@emotion/react": "^11.11.4",
+    "@fontsource/rajdhani": "^5.0.12",
     "electron": "^29.1.0",
     "electron-builder": "^24.13.3",
     "electron-is-dev": "^3.0.1"
