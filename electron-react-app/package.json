@@ -14,9 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dist": "electron-builder",
@@ -43,11 +43,16 @@
   },
   "devDependencies": {
     "@arwes/react": "^1.0.0-alpha.23",
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
     "@emotion/react": "^11.11.4",
     "@fontsource/rajdhani": "^5.0.12",
+    "@preact/compat": "^17.1.2",
+    "customize-cra": "^1.0.0",
     "electron": "^29.1.0",
     "electron-builder": "^24.13.3",
-    "electron-is-dev": "^3.0.1"
+    "electron-is-dev": "^3.0.1",
+    "preact": "^10.19.6",
+    "react-app-rewired": "^2.2.1"
   },
   "build": {
     "appId": "org.mcnausg.deskcommander",
