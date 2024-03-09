@@ -1,5 +1,6 @@
 import './App.css';
 import "@fontsource/rajdhani";
+import "@fontsource/vt323";
 import { Component } from 'react';
 import md5 from 'md5';
 
