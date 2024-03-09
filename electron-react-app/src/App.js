@@ -1,6 +1,7 @@
 import './App.css';
 import "@fontsource/rajdhani";
 import { Component } from 'react';
+import md5 from 'md5';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             <div className="segment-topbar">
               <div className="segment-topbar__header">
                 <TextOverline className="segment-topbar__overline">
-                  <Clock />: d869db7fe62fb07c25a0403ecaea55031744b5fb
+                  <Clock />
                 </TextOverline>
                 <TextHeading4 className="segment-topbar__title">
                   #Shawn
@@ -163,8 +164,8 @@ class Clock extends Component {
   }
 
   render() {
-    let time = new Date(this.state.time).toISOString();
-    return <span>{time}: </span>;
+    var now = new Date(this.state.time);
+    return <span>{now.toISOString()}: {md5(now.toDateString())}</span>;
   }
 }
 
