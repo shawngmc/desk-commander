@@ -56,27 +56,35 @@ This is a complex chain, but actually easy to use:
 
 #### Tooling
 - Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
-- Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
+- Python library: None - just use [subprocess](https://docs.python.org/3/library/subprocess.html) to call ddcutil.
+  - [monitor-commander](https://pypi.org/project/monitor-commander/) is a CLI tool itself
 
 ### USB Switch/etc. via RS232 on a USB-TTL adapter
-As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use the network connection.
+As an example, the following matrix switches support RS-232:
+ - OREI UKM-404 USB Matrix switch(not recommending for other reasons - Do NOT use the network connection.)
+ - [GoFanco 4x4 HDMI Matrix Switch](https://www.amazon.com/dp/B0B6Z1C3N6)
+
+Notes:
+- These simple RS-232 devices cannot handle typing-speed commands - commands must be sent all at once.
+- By default, the OREI is 9600 baud, while the GoFanco is 115200 baud. Both are 8N1.
+- The OREI includes a premade 3-pin to serial adapter, and the GoFanco includes 3-pin connectors (since it uses them for audio too). [Additional connectors are available on Amazon](https://www.amazon.com/dp/B09LQV4DW7).
 
 #### Tooling
 - Linux Debug tool: ```cu``` or ```minicom``` 
 - Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
-
-### Home Assistant
-It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to toggle lights/fans via the screen.
-
-#### Tooling
-- Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
-- Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
 
 ### Hubspace
 Hubspace is Home Depot's Afero-based smart home product line, and I have a ceiling fan with it. I could do this through HomeAssistant, but that integration is a little messy. I know a guy who wrote a clean Python backend, and may eventually make a better HA integration, but in the mean time, why not use the Python backend directly? Nosce te ipsum.
 
 #### Tooling
 - Python library and debug tool: [Hubspace-ng](https://github.com/shawngmc/hubspace-ng)
+
+### Home Assistant
+It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to control other home-automation devices.
+
+#### Tooling
+- Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
+- Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
 
 ## Design Decisions
 
