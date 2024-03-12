@@ -26,7 +26,7 @@ Total BOM is looking to be < $250, currently around $212.
 - [USB Hub/speaker/mic](https://www.amazon.com/USB-Hub-Portable-Computer-Headphone-Speakers/dp/B09FZFBPBC/) - $20
 - USB-C Power Adapter/Cable - $20
 - [SmartiPi Touch Pro Case w/ large build area](https://www.adafruit.com/product/4951) - $30
-- [USB-TTL Adapters](https://www.adafruit.com/product/954) - $10
+- 2x [USB-TTL Adapter](https://www.adafruit.com/product/954) - $10
   - Others should be fine, but a quality one might save some trouble. :)
 - [Tiny USB Hub](https://www.amazon.com/dp/B0BJZ753D9) - $8 (Optional)
 
