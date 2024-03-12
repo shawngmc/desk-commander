@@ -155,6 +155,6 @@ It's unnecessary, may add complexity, and brings a host of security issues. Devi
 - [CyberDeck using this case](https://www.reddit.com/r/cyberDeck/comments/vjpldx/here_is_my_first_cyberdeck_raspberry_pi_4_using/) - I found the case before I found this, but I might snag another :)
 
 ## Install
-### Development
 1. Clone repo
-1. Run pip install -e . from the root project folder
+1. Run ```pip install -e .``` from the root project folder
+1. Run ```npm install``` from the electron-react-app folder
