@@ -26,7 +26,7 @@ Total BOM is looking to be < $250, currently around $212.
 - [USB Hub/speaker/mic](https://www.amazon.com/USB-Hub-Portable-Computer-Headphone-Speakers/dp/B09FZFBPBC/) - $20
 - USB-C Power Adapter/Cable - $20
 - [SmartiPi Touch Pro Case w/ large build area](https://www.adafruit.com/product/4951) - $30
-- [USB-TTL Adapters](https://www.adafruit.com/product/954) - $10
+- 2x [USB-TTL Adapter](https://www.adafruit.com/product/954) - $10
   - Others should be fine, but a quality one might save some trouble. :)
 - [Tiny USB Hub](https://www.amazon.com/dp/B0BJZ753D9) - $8 (Optional)
 
@@ -56,27 +56,35 @@ This is a complex chain, but actually easy to use:
 
 #### Tooling
 - Linux Debug tool: [DDCUtil]([url](https://www.ddcutil.com/)) - CLI tool, great for at least testing
-- Python library: [monitor-commander](https://pypi.org/project/monitor-commander/) - Python wrapper for DDCUtil 
+- Python library: None - just use [subprocess](https://docs.python.org/3/library/subprocess.html) to call ddcutil.
+  - [monitor-commander](https://pypi.org/project/monitor-commander/) is a CLI tool itself
 
 ### USB Switch/etc. via RS232 on a USB-TTL adapter
-As an example, an OREI UKM-404 switch can be controlled via RS-232. Do NOT use the network connection.
+As an example, the following matrix switches support RS-232:
+ - OREI UKM-404 USB Matrix switch(not recommending for other reasons - Do NOT use the network connection.)
+ - [GoFanco 4x4 HDMI Matrix Switch](https://www.amazon.com/dp/B0B6Z1C3N6)
+
+Notes:
+- These simple RS-232 devices cannot handle typing-speed commands - commands must be sent all at once.
+- By default, the OREI is 9600 baud, while the GoFanco is 115200 baud. Both are 8N1.
+- The OREI includes a premade 3-pin to serial adapter, and the GoFanco includes 3-pin connectors (since it uses them for audio too). [Additional connectors are available on Amazon](https://www.amazon.com/dp/B09LQV4DW7).
 
 #### Tooling
 - Linux Debug tool: ```cu``` or ```minicom``` 
 - Python library: [PySerial](https://pypi.org/project/pyserial/) - Python serial library
-
-### Home Assistant
-It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to toggle lights/fans via the screen.
-
-#### Tooling
-- Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
-- Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
 
 ### Hubspace
 Hubspace is Home Depot's Afero-based smart home product line, and I have a ceiling fan with it. I could do this through HomeAssistant, but that integration is a little messy. I know a guy who wrote a clean Python backend, and may eventually make a better HA integration, but in the mean time, why not use the Python backend directly? Nosce te ipsum.
 
 #### Tooling
 - Python library and debug tool: [Hubspace-ng](https://github.com/shawngmc/hubspace-ng)
+
+### Home Assistant
+It'd be nice to be able to provide some Home Assistant controls. I don't want to use HA to control the monitors/etc., but I'd love to be able to control other home-automation devices.
+
+#### Tooling
+- Linux Debug tool: [HASS-CLI](https://github.com/home-assistant-ecosystem/home-assistant-cli)
+- Python library: [HomeAssistant-API](https://pypi.org/project/HomeAssistant-API/)
 
 ## Design Decisions
 
@@ -147,6 +155,6 @@ It's unnecessary, may add complexity, and brings a host of security issues. Devi
 - [CyberDeck using this case](https://www.reddit.com/r/cyberDeck/comments/vjpldx/here_is_my_first_cyberdeck_raspberry_pi_4_using/) - I found the case before I found this, but I might snag another :)
 
 ## Install
-### Development
 1. Clone repo
-1. Run pip install -e . from the root project folder
+1. Run ```pip install -e .``` from the root project folder
+1. Run ```npm install``` from the electron-react-app folder
