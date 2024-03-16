@@ -49,10 +49,22 @@ function App() {
             <div className="channel-feed__body">
               <div className="container">
                 <div className="item"></div>
+                <div className="item">/dev/l_monitor</div>
+                <div className="item">/dev/r_monitor</div>
                 <div className="item">/dev/kb</div>
                 <div className="item">/dev/ptr</div>
                 <div className="item">/dev/claw</div>
                 <div className="item">/sys/ursamajor</div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
                 <div className="item">
                   <Toggle size="xl" type="submit" on enabled>
                     //TODO
@@ -84,6 +96,16 @@ function App() {
                     //TODO
                   </Toggle>
                 </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
                 <div className="item">/sys/accent</div>
                 <div className="item">
                   <Toggle size="xl" type="submit" on enabled>
@@ -100,7 +122,27 @@ function App() {
                     //TODO
                   </Toggle>
                 </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
                 <div className="item">/sys/flex</div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
+                <div className="item">
+                  <Toggle size="xl" type="submit" on enabled>
+                    //TODO
+                  </Toggle>
+                </div>
                 <div className="item">
                   <Toggle size="xl" type="submit" on enabled>
                     //TODO

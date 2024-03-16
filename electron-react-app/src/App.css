@@ -675,6 +675,6 @@ textarea {
 
 .container {
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem 10rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-gap: 1rem;
 }
